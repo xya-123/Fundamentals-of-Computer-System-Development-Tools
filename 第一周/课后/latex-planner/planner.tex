@@ -1,0 +1,140 @@
+\documentclass[10pt,a4paper,fontset=fandol]{ctexart}
+
+\usepackage[a4paper,margin=1.3cm]{geometry}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{mwe}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\setlist{nosep,leftmargin=1.5em}
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+\captionsetup{font=small,skip=2pt}
+
+\ctexset{
+  section={
+    format=\large\bfseries,
+    beforeskip=3pt,
+    afterskip=2pt
+  },
+  subsection={
+    format=\normalsize\bfseries,
+    beforeskip=2pt,
+    afterskip=1pt
+  }
+}
+
+\title{\vspace{-2em}LaTeX 基本功能展示}
+\author{徐宜安\quad 25060012033}
+\date{2026 年 8 月 31 日}
+
+\begin{document}
+
+\maketitle
+\vspace{-2.5em}
+
+\begin{minipage}[t]{0.48\textwidth}
+
+\section{文档结构}
+
+\subsection{列表}
+
+无序列表：
+\begin{itemize}
+  \item Shell 命令
+  \item Git 版本控制
+  \item LaTeX 排版
+\end{itemize}
+
+有序列表：
+\begin{enumerate}
+  \item 编写源文件
+  \item 编译并检查 PDF
+\end{enumerate}
+
+\subsection{数学公式}
+
+行内公式示例：$E=mc^2$。
+
+带编号公式：
+\begin{equation}
+  S = 0.4A + 0.6B
+  \label{eq:score}
+\end{equation}
+
+公式~\eqref{eq:score}表示加权成绩。
+
+多行对齐：
+\begin{align}
+  x+y &= 10,\\
+  x-y &= 2.
+\end{align}
+
+矩阵：
+\[
+A=
+\begin{pmatrix}
+1 & 2\\
+3 & 4
+\end{pmatrix}
+\]
+
+分段函数：
+\[
+f(x)=
+\begin{cases}
+x, & x\ge 0,\\
+-x, & x<0.
+\end{cases}
+\]
+
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+
+\section{图表与引用}
+
+表~\ref{tab:plan}展示学习安排。
+
+\begin{center}
+\captionof{table}{学习安排}
+\label{tab:plan}
+\begin{tabular}{ccc}
+\toprule
+工具 & 时间 & 状态\\
+\midrule
+Shell & 2 h & 完成\\
+Git & 3 h & 完成\\
+LaTeX & 2 h & 进行中\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+图~\ref{fig:demo}展示图片插入效果。
+
+\begin{center}
+  \includegraphics[width=0.55\linewidth]{example-image-a}
+  \captionof{figure}{图片示例}
+  \label{fig:demo}
+\end{center}
+
+\section{链接与文献}
+
+课程参考资料：
+
+\href{https://missing-semester-cn.github.io/}
+{Missing Semester 中文版}
+
+正文引用参考资料~\cite{missingsemester}。
+
+\bibliographystyle{unsrt}
+{\small\bibliography{references}}
+
+\end{minipage}
+
+\end{document}

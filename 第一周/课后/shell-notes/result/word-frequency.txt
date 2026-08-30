@@ -1,0 +1,10 @@
+      4 git
+      3 shell
+      3 done
+      2 review
+      2 practice
+      2 latex
+      1 write
+      1 stash
+      1 report
+      1 pipeline

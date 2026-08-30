@@ -1,0 +1,8 @@
+DONE: learn Shell
+Git branch practice
+Shell pipeline
+DONE: review Git
+LaTeX document practice
+Git stash
+DONE: write LaTeX report
+Shell and Git review

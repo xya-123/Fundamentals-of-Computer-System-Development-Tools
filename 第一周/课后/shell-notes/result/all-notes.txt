@@ -1,0 +1,8 @@
+TODO: learn Shell
+Git branch practice
+Shell pipeline
+TODO: review Git
+LaTeX document practice
+Git stash
+TODO: write LaTeX report
+Shell and Git review

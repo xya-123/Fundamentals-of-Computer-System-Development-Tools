@@ -310,7 +310,7 @@ git log --all --graph --decorate --oneline
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[height=0.80\textheight]{实验过程.png}
+  \includegraphics[height=0.96\textheight]{实验过程.png}
   \caption{q03 分支创建、合并冲突与解决的完整过程（终端截图）}
   \label{fig:q03-proc}
 \end{figure}
@@ -388,6 +388,23 @@ latexmk -pdf -halt-on-error report.tex
   \item \texttt{\detokenize{du -ah lab | sort -h}}：统计目录占用空间并按大小排序。
 \end{enumerate}
 
+\textbf{练习与结果：} 通过 Shell 中
+\texttt{grep}、\texttt{sed}、\texttt{tr}、\texttt{sort}、\texttt{uniq}、
+\texttt{awk} 等命令完成检索、状态替换和词频统计，最终得到 8 行、24 个单词，
+其中 Git、Shell 和 LaTeX 分别出现 4、3、2 次，相关命令及输出见图~\ref{fig:after-shell}。
+
+\begin{figure}[p]
+  \centering
+  \resizebox{!}{0.88\textheight}{%
+    \vbox{\offinterlineskip
+      \hbox{\includegraphics{课后/shell-notes/1.png}}%
+      \hbox{\includegraphics{课后/shell-notes/2.png}}%
+    }%
+  }
+  \caption{Shell 学习笔记处理与统计过程}
+  \label{fig:after-shell}
+\end{figure}
+
 \subsection{Git 练习}
 
 \begin{enumerate}[leftmargin=2.8em,itemsep=0.25em,topsep=0.4em]
@@ -413,11 +430,30 @@ latexmk -pdf -halt-on-error report.tex
   \item \texttt{\detokenize{git cat-file -p HEAD^{tree}}}：查看提交指向的树对象，联系 Git 的对象模型。
 \end{enumerate}
 
+\textbf{练习与结果：} 在独立仓库中完成分块暂存、三次提交、stash 恢复、
+\texttt{restore} 撤销、\texttt{amend} 补充提交和 \texttt{v1.0} 标签，并用
+\texttt{log}、\texttt{show}、\texttt{blame} 与 \texttt{cat-file} 验证了最终历史和文件内容，
+相关操作记录见图~\ref{fig:after-git-1} 和图~\ref{fig:after-git-2}。
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[height=0.96\textheight]{课后/git-notes/1.png}
+  \caption{Git 练习：初始化、差异查看、分块暂存与提交}
+  \label{fig:after-git-1}
+\end{figure}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[height=0.96\textheight]{课后/git-notes/2.png}
+  \caption{Git 练习：stash、撤销、amend、标签与历史验证}
+  \label{fig:after-git-2}
+\end{figure}
+
 \subsection{LaTeX 练习}
 
 \begin{enumerate}[leftmargin=2.8em,itemsep=0.25em,topsep=0.4em]
   \item 用 \texttt{ctexart} 写中文文档，使中文能够正常排版。
-  \item 设置 \texttt{title}、\texttt{author}、\texttt{date} ，用 \texttt{maketitle} 生成标题。
+  \item 设置 \texttt{title}、\texttt{author}、\texttt{date}，用 \texttt{maketitle} 生成标题。
   \item 用 \texttt{section}、\texttt{subsection} 建立两级文档结构。
   \item 用 \texttt{tableofcontents} 生成目录，需要通过多轮编译更新页码。
   \item 用 \texttt{itemize} 排版无序列表，调整列表间距。
@@ -434,6 +470,54 @@ latexmk -pdf -halt-on-error report.tex
   \item 引入 \texttt{hyperref}，用 \texttt{href} 添加可点击的网页链接。
   \item 用 BibTeX 建立 \texttt{.bib} 文件，通过 \texttt{cite} 插入并生成参考文献。
 \end{enumerate}
+
+\textbf{练习与结果：} 使用 LaTeX 在一页中展示列表、公式、矩阵、分段函数、
+三线表、图片、超链接和 BibTeX 文献引用，最终 PDF 编号与交叉引用均正常，
+编译结果见图~\ref{fig:after-latex}。
+完整代码见 \texttt{课后/latex-planner/planner.tex}，核心部分如下。
+
+\begin{lstlisting}[
+  language={[LaTeX]TeX},
+  basicstyle=\scriptsize\ttfamily,
+  numbers=none,
+  caption={planner.tex 核心代码（排版参数略）},
+  label={lst:after-latex}
+]
+\documentclass[10pt,a4paper]{ctexart}
+\usepackage{amsmath,booktabs,graphicx,caption,hyperref}
+\begin{document}
+\section{文档结构}
+\begin{itemize}
+  \item Shell 命令 \item Git 版本控制 \item LaTeX 排版
+\end{itemize}
+行内公式 $E=mc^2$。
+\begin{equation} S=0.4A+0.6B \label{eq:score} \end{equation}
+公式~\eqref{eq:score}表示加权成绩。
+\begin{align} x+y&=10, & x-y&=2. \end{align}
+\[
+A=\begin{pmatrix}1&2\\3&4\end{pmatrix},\qquad
+f(x)=\begin{cases}x,&x\ge0,\\-x,&x<0.\end{cases}
+\]
+\captionof{table}{学习安排}\label{tab:plan}
+\begin{tabular}{ccc}
+\toprule 工具&时间&状态\\ \midrule
+Shell&2 h&完成\\ Git&3 h&完成\\ LaTeX&2 h&进行中\\
+\bottomrule
+\end{tabular}
+\includegraphics[width=.3\textwidth]{example-image-a}
+\href{https://missing-semester-cn.github.io/}{Missing Semester}
+正文引用参考资料~\cite{missingsemester}。
+\bibliographystyle{unsrt}
+\bibliography{references}
+\end{document}
+\end{lstlisting}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[page=1,trim=0 8cm 0 0,clip,width=0.68\textwidth]{课后/latex-planner/planner.pdf}
+  \caption{LaTeX 基本功能展示的编译结果}
+  \label{fig:after-latex}
+\end{figure}
 
 \section{解题感悟}
 
