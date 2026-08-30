@@ -1,2 +1,14 @@
 系统开发工具基础_每周课上实验检查题_学生版.pdf
 系统开发工具基础.pdf
+
+# 实验报告编译中间文件（报告 PDF 本身保留提交）
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+*.toc
+
+tmp

@@ -1,0 +1,160 @@
+% !TeX program = xelatex
+% ============================================================
+%  《系统开发工具基础》实验报告模板（四周通用）
+%  姓名：徐宜安  学号：25060012033  教师：周小伟
+%
+%  【每周使用步骤】
+%  1. 把本文件与 .latexmkrc 一起复制到 <第N周>/ 目录，命名为 实验报告.tex；
+%  2. 修改下方「每周填写区」的 \weeknum、\weektheme、\classdate；
+%  3. 截图放在 课上/qXX/ 下，插图尺寸规范：
+%       - 横向截图：\includegraphics[width=0.85\textwidth]{...}
+%       - 纵向截图：\includegraphics[height=0.72\textheight]{...}
+%  4. 代码用 \lstinputlisting[caption={...},label={...}]{课上/qXX/脚本名} 直接引用源文件，
+%     保证报告里的代码与仓库提交一致；
+%  5. 编译：latexmk -pdf -halt-on-error 实验报告.tex
+%     （.latexmkrc 已固定 XeLaTeX + ctex，支持中文）。
+% ============================================================
+\documentclass[12pt,a4paper,fontset=fandol]{ctexart}
+
+% ---------- 页面布局 ----------
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\setlength{\headheight}{14pt}
+
+% ---------- 数学 ----------
+\usepackage{amsmath,amssymb}
+
+% ---------- 图片 ----------
+\usepackage{graphicx}
+\graphicspath{{课上/q01/}{课上/q02/}{课上/q03/}{课上/q04/}}
+
+% ---------- 表格 ----------
+\usepackage{booktabs,array,multirow}
+
+% ---------- 颜色与代码高亮 ----------
+\usepackage{xcolor}
+\definecolor{codebg}{HTML}{f6f8fa}
+\definecolor{codeframe}{HTML}{d0d7de}
+\definecolor{kwred}{HTML}{cf222e}
+\definecolor{strblue}{HTML}{0a3069}
+\definecolor{cmtgray}{HTML}{6e7781}
+\definecolor{fnpurple}{HTML}{8250df}
+\definecolor{numblue}{HTML}{0550ae}
+
+\usepackage{listings}
+\renewcommand{\lstlistingname}{代码}
+
+% shell 风格语言：第一组为常用命令，第二组为 git 子命令
+\lstdefinelanguage{shell}{
+  morekeywords={mkdir,cd,echo,touch,cp,rm,mv,find,chmod,chown,pwd,ls,cat,head,tail,sort,uniq,awk,sed,grep,printf,exit,return,if,then,else,elif,fi,do,done,for,in,while,case,esac,trap,sleep,bg,jobs,kill,wait,set,export,source,local,time},
+  morekeywords=[2]{git,init,add,commit,checkout,merge,log,status,branch,clone,push,pull,diff,stash,restore,switch},
+  morecomment=[l]{\#},
+  morestring=[b]",
+  morestring=[b]',
+  sensitive=true,
+}
+
+% 简单的 Python 风格（课后练习示例用）
+\lstdefinelanguage{py}{
+  morekeywords={import,from,def,return,if,else,elif,for,in,while,print,with,open,as,class,assert,random,seed,range,lambda},
+  morecomment=[l]{\#},
+  morestring=[b]",
+  morestring=[b]',
+}
+
+% GitHub 浅色风格代码块
+\lstdefinestyle{labcode}{
+  backgroundcolor=\color{codebg},
+  basicstyle=\small\ttfamily,
+  keywordstyle=\color{kwred}\bfseries,
+  keywordstyle=[2]\color{fnpurple}\bfseries,
+  commentstyle=\color{cmtgray}\itshape,
+  stringstyle=\color{strblue},
+  numberstyle=\tiny\color{cmtgray},
+  numbers=left,
+  frame=single,
+  rulecolor=\color{codeframe},
+  breaklines=true,
+  breakatwhitespace=false,
+  showstringspaces=false,
+  tabsize=4,
+  columns=fullflexible,
+  keepspaces=true,
+  captionpos=b,
+  xleftmargin=1.6em,
+  framexleftmargin=1.2em,
+  aboveskip=0.6em,
+  belowskip=0.6em,
+}
+\lstset{style=labcode}
+
+% ---------- 页眉页脚 ----------
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small 系统开发工具基础 · 实验报告}
+\fancyhead[R]{\small 徐宜安\quad 25060012033}
+\fancyfoot[C]{\small 第 \thepage\ 页 / 共 \pageref{LastPage} 页}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---------- 超链接 ----------
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=numblue,urlcolor=numblue,citecolor=numblue}
+
+% ---------- 题目要求框 ----------
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\newtcolorbox{taskbox}[1][]{
+  colback=blue!4!white,
+  colframe=blue!50!black,
+  fonttitle=\bfseries,
+  title={#1},
+  boxrule=0.6pt,
+  arc=1.5pt,
+  left=8pt, right=8pt, top=5pt, bottom=5pt,
+  breakable,
+}
+
+% ---------- 图表说明样式 ----------
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf,labelsep=quad}
+
+% ---------- 列表 ----------
+\usepackage{enumitem}
+
+% ==================== 每周填写区 ====================
+\newcommand{\weeknum}{第 1 周}
+\newcommand{\weektheme}{课程概览与 Shell 入门 · Version Control and Git · LaTeX 文档编辑}
+\newcommand{\classdate}{2026 年 8 月 24 日}
+% ==================== 每周填写区结束 ====================
+
+% 首页标题块（姓名/学号等信息在此修改）
+\newcommand{\makereporttitle}{%
+  \begin{center}
+    {\LARGE\bfseries 系统开发工具基础 · 实验报告}\\[0.4em]
+    {\large \weeknum：\weektheme}\\[0.7em]
+    {\small
+    \begin{tabular}{@{}ll@{\hspace{3em}}ll@{}}
+      姓\quad 名 & 徐宜安 & 学\quad 号 & 25060012033 \\
+      授课教师 & 周小伟 & 上课日期 & \classdate \\
+      Git 仓库 & 待补充 & 报告日期 & \today \\
+    \end{tabular}}\\[0.7em]
+    \rule{\textwidth}{0.8pt}
+  \end{center}
+}
+
+\begin{document}
+\makereporttitle
+
+\section{课上练习}
+% 每题结构：
+% \subsection{qXX · 题目名（主题）}
+% \begin{taskbox}[题目要求] ... \end{taskbox}
+% 实现思路 → 代码（\lstinputlisting）→ 结果（图/文字）
+
+\section{课后练习}
+% 每次课不少于 10 个实例，命令与结果展示同上
+
+\section{解题感悟}
+
+\end{document}
