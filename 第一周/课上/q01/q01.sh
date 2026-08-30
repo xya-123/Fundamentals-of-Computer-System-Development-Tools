@@ -15,9 +15,9 @@ echo "hidden" > input/docs/.secret.txt
 touch input/tmp/empty.txt
 echo -e "log line 1\nlog line 2" > input/run.log
 
-# 打印绝对路径，列出input内容
+# 打印绝对路径，递归列出 input 下全部内容（包含隐藏文件）
 pwd
-ls -lA input
+ls -lAR input
 
 # 复制文件，保留目录结构，find方案（兼容空格文件名）
 mkdir -p work/${STUDENT_ID}
