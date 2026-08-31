@@ -3,7 +3,7 @@
 
 # 实验报告编译中间文件（报告 PDF 本身保留提交）
 *.aux
-*.log
+.log
 *.out
 *.fls
 *.fdb_latexmk
