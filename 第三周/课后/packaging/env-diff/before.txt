@@ -1,0 +1,6 @@
+python=/d/Software/python
+VIRTUAL_ENV=none
+PATH head:
+/c/Users/xya/bin
+/mingw64/bin
+/usr/local/bin

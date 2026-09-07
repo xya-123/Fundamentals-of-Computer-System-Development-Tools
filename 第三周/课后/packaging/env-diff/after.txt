@@ -1,0 +1,6 @@
+python=\desktop\系统开发工具基础\第三周\课后\packaging\env-diff\.venv/Scripts/python
+VIRTUAL_ENV=D:\desktop\系统开发工具基础\第三周\课后\packaging\env-diff\.venv
+PATH head:
+D
+\desktop\系统开发工具基础\第三周\课后\packaging\env-diff\.venv/Scripts
+/c/Users/xya/bin
