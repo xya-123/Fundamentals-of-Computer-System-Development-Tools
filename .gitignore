@@ -22,3 +22,8 @@ __pycache__
 test_env
 dist
 .venv
+
+build/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
